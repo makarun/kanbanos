@@ -1,2 +1,1 @@
 # kanbanos
-Simple ToDo app
