@@ -1,0 +1,58 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+<div class = "container">
+    </br>
+    <div class="panel panel-primary">
+        {# {% if task.author == user %} #}
+        <div class="panel-heading">
+            <h1>{{ task.title }}</h1>
+        
+            <a class="btn btn-primary" href="{% url 'task_edit' pk=task.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a class="btn btn-primary" href="{% url 'task_remove' pk=task.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            
+            <span class="badge">Priority: {{ task.priority }}</span>
+            <span class="badge">Id: {{ task.id }}</span>
+            <span class="badge">Date: {{ task.date }}</span>
+        </div>
+        
+        <div class="panel-body">
+            <p>{{ task.text|linebreaksbr }}</p>
+            <hr>
+            {% for stage in task.stages.all %}
+            {# {% if user.is_authenticated%} #}
+                <div class="comment">
+                        <a href="{% url 'change_achieved' pk=stage.pk %}">
+                            {% if stage.achieved == True %}
+                                <span class="glyphicon glyphicon-check"></span>
+                            {% else %}
+                                <span class="glyphicon glyphicon-unchecked"></span>
+                            {% endif %}
+                        </a>
+                        
+                            <strong>
+                                {{ stage.title }}
+                            </strong>
+                        
+                        <a  href="{% url 'stage_remove' pk=stage.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <div>
+                    <p style="text-indent:10px">{{ stage.text|linebreaks }}</p>
+                    </div>
+                </div>
+            {# {% endif %} #}
+            
+            {% empty %}
+                <p>No stages here yet :(</p>
+            {% endfor %}
+                <a class="btn btn-default" href="{% url 'add_stage_to_task' pk=task.pk %}">Add stage</a>
+
+        </div>
+        <hr>
+        {# {% else %} #}
+        <!--    <div class="panel-heading">
+            <h3> Stages </h3>
+
+            </div>-->
+        {# {% endif %} #}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "todo/base.html" %}
+
+{% block content %}
+<div class = "container">
+	<br>
+	<div class="panel panel-primary">
+	<div class="panel-heading">
+		{% if form.errors %}
+		<h3>Your username and password didn't match. Please try again.</h3>
+		{% else %}
+		<h3>Please loggin</h3>
+		{% endif %}
+	</div>	
+	<div class="panel-body">
+		<form method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+			<table>
+				<tr>
+				    <td>{{ form.username.label_tag }}</td>
+				    <td>{{ form.username }}</td>
+				</tr>
+				<tr>
+				    <td>{{ form.password.label_tag }}</td>
+				    <td>{{ form.password }}</td>
+				</tr>
+			</table>
+
+			<input type="submit" value="login" />
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+	</div>
+</div>	
+{% endblock %}

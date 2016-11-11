@@ -1,0 +1,27 @@
+{% extends 'todo/base.html' %}    
+{% block content %}
+<div class = "container">
+    </br>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3>Done</h3>
+        </div>
+            <div class="list-group">
+                {% for task in tasks %}
+                    {% if task.author == user %}
+                        {% if task.category == 3 %}
+                            <a href="{% url 'task_detail' pk=task.pk %}" class="list-group-item"> <h4>{{ task.title }}</h4>
+                            <hr>
+                            {{ task.text }}
+                            <hr>
+                            {{ task.date }}
+                            <span class="badge">{{ task.id }}</span>
+                            <span class="badge">{{ task.priority }}</span>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+</div>
+{% endblock %}

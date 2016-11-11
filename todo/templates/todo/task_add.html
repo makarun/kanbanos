@@ -1,0 +1,17 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+ <div class = "container">
+ </br>
+	<div class="panel panel-primary">
+  		<div class="panel-heading">
+    	<h1>New Task</h1>
+    	</div>
+    	<div class="panel-body">
+			<form method="POST" class="post-form">{% csrf_token %}
+        		{{ form.as_p }}
+        		<button type="submit" class="save btn btn-primary"><span class="glyphicon glyphicon-pushpin"></span></button>
+    		</form>	
+		</div>
+    </div>
+</div>
+{% endblock %}

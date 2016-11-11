@@ -1,0 +1,96 @@
+{% extends 'todo/base.html' %}    
+{% block content %}
+        <div class="container-fluid"> 
+            <div class="row content">
+                <div class="col-sm-3">
+                </br>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>ToDo</h3>
+                        </div>
+                            <div class="list-group">
+                            {% for task in tasks %}
+                                {% if task.author == user %}
+                                    {% if task.category == 1 %}
+                                        <a href="{% url 'task_detail' pk=task.pk %}" class="list-group-item"> {{ task.title }}
+                                        {% if task.stages.count > 0 %}
+                                            <span class="badge">{{ task.stages.count }} Stages</span>
+                                        {% endif %}
+                                        <!--
+                                        {# <span class="badge">{{ task.id }}</span>
+                                        <span class="badge">{{ task.priority }}</span>#}
+                                        -->
+                                        <hr>
+                                        {{ task.text|truncatewords:100 }}
+                                        <br>
+                                        </a>
+                                    {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                </br>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3>Doing</h3>
+                        </div>
+                        
+                            <div class="list-group">
+                                {% for task in tasks %}
+                                    {% if task.author == user %}
+                                    {% if task.category == 2 %}
+                                        <a href="{% url 'task_detail' pk=task.pk %}" class="list-group-item"> {{ task.title }}
+                                        {% if task.stages.count > 0 %}
+                                            <span class="badge">{{ task.stages.count }} Stages</span>
+                                        {% endif %}
+                                        <!--
+                                        {# <span class="badge">{{ task.id }}</span>
+                                        <span class="badge">{{ task.priority }}</span>#}
+                                        -->
+                                        <hr>
+                                        {{ task.text|truncatewords:100 }}
+                                        <br>
+                                        </a>
+                                    {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
+                            </div>
+                        
+                    </div>
+                
+                <div class="col-sm-3">
+                </br>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3>Done</h3>
+                        </div>
+                        <div class="list-group">
+                            {% for task in tasks %}
+                                {% if task.author == user %}
+                                {% if task.category == 3 %}
+                                    <a href="{% url 'task_detail' pk=task.pk %}" class="list-group-item"> {{ task.title }}
+                                        {% if task.stages.count > 0 %}
+                                            <span class="badge">{{ task.stages.count }} Stages</span>
+                                        {% endif %}
+                                        <!--
+                                        {# <span class="badge">{{ task.id }}</span>
+                                        <span class="badge">{{ task.priority }}</span>#}
+                                        -->
+                                        <hr>
+                                        {{ task.text|truncatewords:100 }}
+                                        <br>
+                                    </a>
+                                {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
