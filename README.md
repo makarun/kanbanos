@@ -85,9 +85,5 @@ Simple ToDo App with Django & PostgreSQL
 	stage remove
 	stage change status
 
-###ToDo:
 
-	stages edit
-	stages sorting
-	name of task on add_stage view
 
