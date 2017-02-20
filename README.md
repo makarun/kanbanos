@@ -1,7 +1,20 @@
 # kanbanos
 Simple ToDo App with Django & PostgreSQL
+## Done:
+* views
+* login
+* task edit
+* task remove
+* stage model / add / remove / change status
 
-###Done:
+## To Do:
+* multiple user acces to task
+* stages edit
+* stages sorting
+* name of task on add_stage view
+* adding filles to task
+
+### history/silva rerum:
 
 	making virtual env:
 		virtualenv --python=python3.5 myvenv
